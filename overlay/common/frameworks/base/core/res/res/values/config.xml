@@ -107,6 +107,9 @@
         <item>systemui/use_back_gesture_ml_model=true</item>
         <item>systemui/back_gesture_ml_model_name=backgesture</item>
         <item>systemui/back_gesture_ml_model_threshold=0.8</item>
+        
+	<!-- Disable always screen on -->
+        <item>attention_manager_service/keep_screen_on_enabled=false</item>
 
         <!-- Don't pin camera app to save memory -->
         <item>runtime_native_boot/pin_camera=false</item>
