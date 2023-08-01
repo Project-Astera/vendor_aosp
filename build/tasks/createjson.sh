@@ -34,8 +34,7 @@ if [ -f $existingOTAjson ]; then
 	version="$4"
 	buildprop=$2/system/build.prop
 	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
-    device=`grep -n "ro.astera.device" $buildprop | cut -d':' -f1`
-    download="https://sourceforge.net/projects/project-astera/files/downloads/$device/$3/downloads"
+    download="https://sourceforge.net/projects/project-astera/files/downloads/$1/$3/downloads"
 	timestamp=`sed -n $linenr'p' < $buildprop | cut -d'=' -f2`
 	md5=`md5sum "$2/$3" | cut -d' ' -f1`
 	size=`stat -c "%s" "$2/$3"`
