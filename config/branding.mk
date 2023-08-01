@@ -1,5 +1,5 @@
 # Type of Build
-CUSTOM_BUILD_TYPE ?= UNOFFICIAL
+CUSTOM_BUILD_TYPE ?= COMMUNITY
 
 # Astera Props
 Astera_BASE_VERSION = Thundra
