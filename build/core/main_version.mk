@@ -26,8 +26,11 @@ endif
 
 # Versioning props
 ADDITIONAL_SYSTEM_PROPERTIES  += \
-    org.pixelexperience.version=$(CUSTOM_VERSION_PROP) \
-    org.pixelexperience.version.display=$(CUSTOM_VERSION) \
-    org.pixelexperience.build_date=$(CUSTOM_BUILD_DATE) \
-    org.pixelexperience.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
-    org.pixelexperience.build_type=$(CUSTOM_BUILD_TYPE)
+    org.astera.version=$(Astera_BASE_VERSION) \
+    org.astera.version.display=$(CUSTOM_VERSION) \
+    org.astera.build_date=$(CUSTOM_BUILD_DATE) \
+    org.astera.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
+    org.astera.build_type=$(CUSTOM_BUILD_TYPE) \
+    org.astera.codename=$(Astera_BASE_VERSION) \
+    org.astera.build_version=$(Astera_BUILD_VERSION) \
+    ro.astera.maintainer=$(ASTERA_MAINTAINER)
