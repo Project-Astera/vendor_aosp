@@ -43,13 +43,13 @@ if [ -f $existingOTAjson ]; then
 	echo '{
   "response": [
     {
-      "datetime": $timestamp,
-      "filename": "$filename",
-      "id": "$md5",
-      "romtype": "$buildtype",
-      "size": $size,
-      "url": "$download",
-      "version": "$version"
+      "datetime": '$timestamp',
+      "filename": "'$filename'",
+      "id": "'$md5'",
+      "romtype": "'$buildtype'",
+      "size": '$size',
+      "url": "'$download'",
+      "version": "'$version'"
     }
   ]
 }
