@@ -47,7 +47,7 @@ custom_default_revision = os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'thundra')
 custom_fallback_revision = 'thirteen'
 uses_fallback_revision = False
 custom_dependencies = "aosp.dependencies"
-org_manifest = "project-astera-devices"  # leave empty if org is provided in manifest
+org_manifest = "astera-devices"  # leave empty if org is provided in manifest
 org_display = "Project-Astera-Devices"  # needed for displaying
 
 github_auth = None
