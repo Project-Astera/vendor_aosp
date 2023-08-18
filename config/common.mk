@@ -124,6 +124,10 @@ PRODUCT_PACKAGES += \
     NoCutoutOverlay \
     DummyCutoutOverlay
 
+# Black theme
+PRODUCT_PACKAGES += \
+    AndroidBlackThemeOverlay
+
 # GameSpace
 PRODUCT_PACKAGES += \
     GameSpace
