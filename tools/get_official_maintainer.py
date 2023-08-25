@@ -18,24 +18,37 @@ if github_pat is None:
 
 try:
     url = "https://raw.githubusercontent.com/Project-Astera-Devices/devices/thundra/devices.json"
-    
+
     # Conditional import for Python 2.x and 3.x
     try:
-        from urllib.request import Request, urlopen
+        from urllib.request import Request, urlopen, HTTPError
     except ImportError:
-        from urllib2 import Request, urlopen
+        from urllib2 import Request, urlopen, HTTPError
 
     headers = {"Authorization": "token {}".format(github_pat)}
     req = Request(url, headers=headers)
-    
+
     # Open the URL and read the JSON response
     if sys.version_info.major == 2:
-        response = urlopen(req, timeout=10)
-        data = json.loads(response.read().decode("utf-8"))
+        try:
+            response = urlopen(req, timeout=10)
+            data = json.loads(response.read().decode("utf-8"))
+        except HTTPError as http_error:
+            print("unknown - check your GITHUB_PAT var")
+            sys.exit(1)
+        except ValueError as e:
+            print("unknown - check your GITHUB_PAT var")
+            sys.exit(1)
     else:
         import requests
-        response = requests.get(url, headers=headers, timeout=10)
-        data = response.json()
+        try:
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()  # Raise exception for HTTP errors
+            data = response.json()
+        except (requests.exceptions.RequestException, ValueError) as e:
+            print("unknown - check your GITHUB_PAT var")
+            sys.exit(1)
+
     for res in data:
         if res['codename'] == codename_to_check:
             for version in res['supported_versions']:
@@ -43,6 +56,10 @@ try:
                     print(res['maintainer'])
                     sys.exit(0)
 except Exception as e:
-    print("Error:", e)
+    if isinstance(e, HTTPError):
+        print("Error:", e)
+        sys.exit(1)
+    else:
+        print("Error:", e)
 
 print("unknown")
