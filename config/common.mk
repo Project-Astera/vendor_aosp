@@ -104,6 +104,10 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     product_charger_res_images
 
+# Display
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.surface_flinger.enable_frame_rate_override=false
+
 # Filesystems tools
 PRODUCT_PACKAGES += \
     fsck.ntfs \
