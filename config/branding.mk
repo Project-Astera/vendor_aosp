@@ -2,7 +2,7 @@
 CUSTOM_BUILD_TYPE ?= COMMUNITY
 
 # Astera Props
-Astera_BASE_VERSION = Thundra
+Astera_BASE_VERSION = Thurisu
 
 # Time Related
 CUSTOM_DATE_YEAR := $(shell date -u +%Y)

@@ -22,7 +22,7 @@ try:
         print("GitHub Personal Access Token (GITHUB_PAT) not set.")
         sys.exit(1)
 
-    url = "https://raw.githubusercontent.com/Project-Astera-Devices/devices/thundra/devices.json"
+    url = "https://raw.githubusercontent.com/Project-Astera-Devices/devices/thurisu/devices.json"
     
     headers = {"Authorization": "token {}".format(github_pat)}
     req = urllib.request.Request(url, headers=headers)
@@ -31,7 +31,7 @@ try:
     data = json.loads(response.read())
     for res in data:
         for version in res['supported_versions']:
-            if version['version_code'] == 'thundra':
+            if version['version_code'] == 'thurisu':
                 print (res['codename'])
                 break
 except urllib.error.HTTPError as http_error:

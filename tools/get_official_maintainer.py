@@ -17,7 +17,7 @@ if github_pat is None:
     sys.exit(1)
 
 try:
-    url = "https://raw.githubusercontent.com/Project-Astera-Devices/devices/thundra/devices.json"
+    url = "https://raw.githubusercontent.com/Project-Astera-Devices/devices/thurisu/devices.json"
 
     # Conditional import for Python 2.x and 3.x
     try:
@@ -52,7 +52,7 @@ try:
     for res in data:
         if res['codename'] == codename_to_check:
             for version in res['supported_versions']:
-                if version['version_code'] == 'thundra':
+                if version['version_code'] == 'thurisu':
                     print(res['maintainer'])
                     sys.exit(0)
 except Exception as e:
