@@ -63,7 +63,6 @@ try:
             print("unknown - check your GITHUB_PAT var")
             sys.exit(1)
     else:
-        import requests
         try:
             response = requests.get(url, headers=headers, timeout=10)
             response.raise_for_status()  # Raise exception for HTTP errors
