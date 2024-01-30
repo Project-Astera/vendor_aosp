@@ -2,12 +2,11 @@ import os
 import json
 import sys
 
-# Conditional import for Python 2.x and 3.x
-try:
-    from urllib.request import Request, urlopen, HTTPError
-    import requests
-except ImportError:
+if sys.version_info[0] == 2:
     from urllib2 import Request, urlopen, HTTPError
+else:
+    from urllib.request import Request, urlopen
+    from urllib.error import HTTPError
 
 # Get the codename from command-line arguments
 if len(sys.argv) != 2:
@@ -27,21 +26,12 @@ def get_token_username(token):
     url = "https://api.github.com/user"
     headers = {"Authorization": "token" + " " + str(token)}
     req = Request(url, headers=headers)
-    if sys.version_info.major == 2:
-        try:
-            response = urlopen(req, timeout=10)
-            data = json.loads(response.read().decode("utf-8"))
-        except Exception as e:
-            print("unknown - check your GITHUB_PAT var")
-            sys.exit(1)
-    else:
-        try:
-            response = requests.get(url, headers=headers, timeout=10)
-            response.raise_for_status()  # Raise exception for HTTP errors
-            data = response.json()
-        except Exception as e:
-            print("unknown - check your GITHUB_PAT var")
-            sys.exit(1)
+    try:
+        response = urlopen(req, timeout=10)
+        data = json.loads(response.read().decode("utf-8"))
+    except Exception as e:
+        print("unknown - check your GITHUB_PAT var")
+        sys.exit(1)
     return data["login"]
 
 try:
@@ -52,24 +42,15 @@ try:
     req = Request(url, headers=headers)
 
     # Open the URL and read the JSON response
-    if sys.version_info.major == 2:
-        try:
-            response = urlopen(req, timeout=10)
-            data = json.loads(response.read().decode("utf-8"))
-        except HTTPError as http_error:
-            print("unknown - check your GITHUB_PAT var")
-            sys.exit(1)
-        except ValueError as e:
-            print("unknown - check your GITHUB_PAT var")
-            sys.exit(1)
-    else:
-        try:
-            response = requests.get(url, headers=headers, timeout=10)
-            response.raise_for_status()  # Raise exception for HTTP errors
-            data = response.json()
-        except (requests.exceptions.RequestException, ValueError) as e:
-            print("unknown - check your GITHUB_PAT var")
-            sys.exit(1)
+    try:
+        response = urlopen(req, timeout=10)
+        data = json.loads(response.read().decode("utf-8"))
+    except HTTPError as http_error:
+        print("unknown - check your GITHUB_PAT var")
+        sys.exit(1)
+    except ValueError as e:
+        print("unknown - check your GITHUB_PAT var")
+        sys.exit(1)
 
     for device in data:
         if device["codename"] == codename_to_check:
