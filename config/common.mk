@@ -209,7 +209,7 @@ PRODUCT_PACKAGES += \
 	libtextclassifier_lang_id_model
 
 # Camera
-ifneq ($(PRODUCT_NO_CAMERA),true)
+ifeq ($(TARGET_BUILD_APERTURE),true)
 PRODUCT_PACKAGES += \
     Aperture
 endif
