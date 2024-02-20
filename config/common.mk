@@ -214,6 +214,9 @@ PRODUCT_PACKAGES += \
     Aperture
 endif
 
+# Enable building aperture by default
+TARGET_BUILD_APERTURE ?= true
+
 # Use gestures by default
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
